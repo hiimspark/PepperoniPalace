@@ -1,0 +1,38 @@
+body{
+    margin:0;
+    background-color: #fdc079;
+}
+main{
+    padding-top:60px;
+    width:auto;
+}
+.mainpage{
+    padding-top:75px;
+    padding-bottom:75px;
+    gap:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height:auto;
+}
+.menuitem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align:center;
+    height:350px;
+    width:350px;
+    background-color: #fda379;
+    border-radius: 250px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.menuitem div{
+    margin-top:-10px
+}
+.pizzaImg img{
+    width:150px;
+    height:150px;
+}

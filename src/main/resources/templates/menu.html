@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet"  href="/css/header-footer.css">
+    <link rel="stylesheet"  href="/css/menu.css">
+    <title>Pepperoni Palace</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<header th:insert="~{parts :: header}" class="header"></header>
+<main>
+    <div class="mainpage">
+        <div th:each="pz: ${pizzas}">
+            <div th:insert="~{parts :: pizza}"></div>
+        </div>
+    </div>
+    <footer th:insert="~{parts :: footer}"></footer>
+    <div class="footer-copyright"><p>© Спиридонов Матвей Сергеевич [ИКБО-30-22]</p></div>
+</main>
+</body>
+</html>

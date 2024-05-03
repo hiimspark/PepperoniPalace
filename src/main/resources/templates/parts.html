@@ -1,0 +1,66 @@
+<div th:fragment="header">
+    <a href="index.html" class="logo"><img src="images/favicon.png" width="30px" height="30px"><b>Pepperoni Palace</b></a>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+    <ul class="menu">
+        <li><a href="home">Главная страница</a></li>
+        <li><a href="aboutus">О нас</a></li>
+        <li><a href="menu">Менюг</a>
+        <li><a href="login">Войти</a></li>
+    </ul>
+</div>
+
+<div th:fragment="footer" class="footer-container">
+    <div class="footer-element footer-aboutus">
+        <h2>О нас</h2>
+        <p>Мебельный магазин предлагает широкий ассортимент продукции для дома и офиса: от столов и стульев до шкафов и диванов.
+            Здесь каждый может найти варианты на свой вкус, будь то классический стиль или современный дизайн.</p>
+        <ul class="footer-buttons">
+            <li><div class="socialbutton vk"><img style="z-index:1; position:relative;" src="images/vk.png" width="35" height="35"></div></li>
+            <li><div class="socialbutton yt"><img style="z-index:1; position:relative;" src="images/yt.png" width="35" height="25"></div></li>
+            <li><div class="socialbutton rd"><img style="z-index:1; position:relative;" src="images/rd.png" width="35" height="35"></div></li>
+        </ul>
+
+    </div>
+    <div class="footer-element footer-menu">
+        <h2>Ссылки-меню</h2>
+        <ul>
+            <li><a href="index.html">Главная страница</a></li>
+            <li><a href="aboutus.html">О нас</a></li>
+            <li><a href="catalogue.html">Каталог</a>
+            <li><a href="cart.html">Корзина</a></li>
+        </ul>
+    </div>
+    <div class="footer-element footer-contacts">
+        <h2>Контакты</h2>
+        <ul class="contacts-info">
+            <li>
+                <img src="images/pin.png" width="25" height="25">
+                <p>г.Москва, <br>проспект Вернадского,<br> д. 78</p>
+            </li>
+            <li>
+                <img src="images/phone.png" width="25" height="25">
+                <p><a href="tel:+79101715517">+7(910)171-55-17</a></p>
+            </li>
+            <li>
+                <img src="images/email.png" width="25" height="25">
+                <p><a href="mailto:mssp@yandex.ru">mssp@yandex.ru</a></p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div th:fragment="pizza" class="menuitem">
+    <div class="pizzaImg">
+        <img th:src="@{'data:image/png;base64,'+${pz.generateBase64Image()}}" alt="">
+    </div>
+    <div class="pizzaName">
+        <p th:text="${pz.name}"/>
+    </div>
+    <div class="pizzaPrice">
+        <p th:text="${pz.price}"/>
+    </div>
+    <div class="pizzaInfo">
+        <p th:text="${pz.text}"/>
+    </div>
+</div>
