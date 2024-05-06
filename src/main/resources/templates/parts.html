@@ -1,12 +1,23 @@
 <div th:fragment="header">
-    <a href="index.html" class="logo"><img src="images/favicon.png" width="30px" height="30px"><b>Pepperoni Palace</b></a>
+    <a href="home" class="logo"><img src="images/favicon.png" width="30px" height="30px"><b>Pepperoni Palace</b></a>
     <input class="menu-btn" type="checkbox" id="menu-btn" />
     <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
     <ul class="menu">
         <li><a href="home">Главная страница</a></li>
         <li><a href="aboutus">О нас</a></li>
-        <li><a href="menu">Менюг</a>
-        <li><a href="login">Войти</a></li>
+        <li><a href="menu">Меню</a>
+        <li sec:authorize="!isAuthenticated()">
+        <a href="login">Войти</a>
+        </li>
+        <li sec:authorize="!isAuthenticated()">
+            <a href="reg">Зарегестрироваться</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a href="logout" th:text="'Выйти (Пользователь: ' + ${#authentication.name} + ')'"></a>
+        </li>
+        <li sec:authorize="hasAuthority('ADMINROLE')">
+            <a href="admin">Админ-страница</a>
+        </li>
     </ul>
 </div>
 
@@ -62,5 +73,8 @@
     </div>
     <div class="pizzaInfo">
         <p th:text="${pz.text}"/>
+    </div>
+    <div class="pizzaButton">
+        <a>🛒</a>
     </div>
 </div>

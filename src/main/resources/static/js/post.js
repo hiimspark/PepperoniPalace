@@ -27,7 +27,9 @@ document.getElementById("addForm").addEventListener("submit", function(event) {
           }).catch(error => {
                console.error('Ошибка при отправке запроса:', error);
           });
+
     };
     reader.readAsDataURL(file);
+    event.target.reset();
 });
 

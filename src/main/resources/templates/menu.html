@@ -9,6 +9,28 @@
 <body>
 <header th:insert="~{parts :: header}" class="header"></header>
 <main>
+    <div class="menuText">
+        <h2>Меню</h2>
+    </div>
+    <div class="sortButtons">
+        <h3>Сортировать по:</h3>
+        <form id="asc" class="bar" action="menu" method="get">
+            <input type="text" style="display:none" name="filter" value="asc">
+            <button id="asc_button" type="submit">₽⇧</button>
+        </form>
+        <form id="desc" class="bar" action="menu" method="get">
+            <input type="text" style="display:none" name="filter" value="desc">
+            <button id="desc_button" type="submit">₽⇩</button>
+        </form>
+        <form id="abc" class="bar" action="menu" method="get">
+            <input type="text" style="display:none" name="filter" value="abc">
+            <button id="abc_button" type="submit">A-z</button>
+        </form>
+        <form id="cba" class="bar" action="menu" method="get">
+            <input type="text" style="display:none" name="filter" value="cba">
+            <button id="cba_button" type="submit">Z-a</button>
+        </form>
+    </div>
     <div class="mainpage">
         <div th:each="pz: ${pizzas}">
             <div th:insert="~{parts :: pizza}"></div>

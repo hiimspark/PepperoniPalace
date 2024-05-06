@@ -1,0 +1,75 @@
+body{
+    margin:0;
+    background-color: #fdc079;
+}
+main{
+    padding-top:60px;
+    width:auto;
+}
+.mainpage{
+    padding-top:35px;
+    padding-bottom:75px;
+    gap:50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height:auto;
+}
+.menuitem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align:center;
+    height:375px;
+    width:375px;
+    background-color: #fda379;
+    border-radius: 250px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.menuitem div{
+    margin-top:-10px
+}
+.pizzaImg img{
+    width:150px;
+    height:150px;
+}
+
+.pizzaButton{
+    padding:10px;
+    border-radius:10px;
+    background-color: black;
+}
+
+.sortButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap:wrap;
+    width:100%;
+    gap:10px;
+}
+
+.sortButtons button{
+    width:50px;
+    height:50px;
+    padding:10px;
+    border:none;
+    border-radius:25px;
+    background-color: #fda379;
+}
+
+.sortButtons h3{
+    text-align:center;
+    flex-basis:100%;
+}
+
+.menuText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:32px;
+}

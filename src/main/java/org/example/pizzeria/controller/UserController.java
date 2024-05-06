@@ -7,6 +7,8 @@ import org.example.pizzeria.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+
 
 import java.util.List;
 
@@ -22,6 +24,13 @@ public class UserController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ResponseEntity<UserEntity> create(@RequestBody UserDTO dto) {
+        return new ResponseEntity<>(service.addUser(dto), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/registration_js", method = RequestMethod.POST)
+    public ResponseEntity<UserEntity> regUser(@RequestParam String name, @RequestParam String password,
+                                               @RequestParam String roles, Model model) {
+        UserDTO dto = new UserDTO(name, password, roles);
         return new ResponseEntity<>(service.addUser(dto), HttpStatus.OK);
     }
 

@@ -8,18 +8,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Base64;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMINROLE')")
 @AllArgsConstructor
 public class AdminPageController {
     private final PizzaService pizzaService;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String addMenu(@RequestParam(value="ask_name", required = false) String pizzaN, Model model) {
+    public String addMenu(@RequestParam(value="pizzaN", required = false) String pizzaN, Model model) {
         List<PizzaEntity> pizzas = pizzaService.readAll();
         if (pizzaN != null){
             long pizzaId = -1;
@@ -29,12 +31,16 @@ public class AdminPageController {
                     break;
                 }
             }
-            if (pizzaId == -1){
-                model.addAttribute("findResult", "Пицца не найдена :(");
-            }
-            else{
+            if (pizzaId != -1){
                 model.addAttribute("findResult", "ID пиццы: " + pizzaId);
             }
+            else{
+                model.addAttribute("findResult", "Пицца не найдена :(");
+            }
+        }
+        else {
+            String pizzaNull = "Введите название для поиска :)";
+            model.addAttribute("findResult", pizzaNull);
         }
         return "admin";
     }
