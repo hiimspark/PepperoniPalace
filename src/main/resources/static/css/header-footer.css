@@ -33,8 +33,9 @@ button{
     display: block;
     padding: 20px 20px;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
+    font-size:18px;
 }
+
 .header li a:hover,
 .header .menu-btn:hover {
     background-color: #dbc786;
@@ -50,7 +51,6 @@ button{
     padding: 10px 20px;
     text-decoration: none;
     color: #a37960;
-    font-family: 'Montserrat', sans-serif;
 }
 .logo img{
     padding-right: 10px;
@@ -153,7 +153,6 @@ footer{
     color: #a38060;
     font-weight: 500;
     margin-bottom:15px;
-    font-family: 'Montserrat', sans-serif;
 }
 .footer-container .footer-element h2:before{
     content:'';
@@ -185,8 +184,7 @@ footer{
     text-decoration: underline;
     margin-bottom:5px;
     display:inline-block;
-    font-family: 'Mooli', sans-serif;
-    font-size:14px;
+    font-size:18px;
     transition: transform 0.3s;
 }
 
@@ -208,8 +206,7 @@ footer{
     justify-content: center;
     margin-bottom: 15px;
     text-align: left;
-    font-size:14px;
-    font-family: 'Mooli', sans-serif;
+    font-size:18px;
 
 }
 .footer-contacts li p{
@@ -224,8 +221,7 @@ footer{
     padding:10px;
 }
 .footer-container .footer-aboutus p{
-    font-family: 'Mooli', sans-serif;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .socialbutton{

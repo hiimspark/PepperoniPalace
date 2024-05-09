@@ -18,14 +18,19 @@
         <li sec:authorize="hasAuthority('ADMINROLE')">
             <a href="admin">Админ-страница</a>
         </li>
+        <li sec:authorize="!isAuthenticated()">
+            <a href="login">Корзина</a>
+        </li>
+        <li sec:authorize="isAuthenticated()">
+            <a href="cart">Корзина</a>
+        </li>
     </ul>
 </div>
 
 <div th:fragment="footer" class="footer-container">
     <div class="footer-element footer-aboutus">
         <h2>О нас</h2>
-        <p>Мебельный магазин предлагает широкий ассортимент продукции для дома и офиса: от столов и стульев до шкафов и диванов.
-            Здесь каждый может найти варианты на свой вкус, будь то классический стиль или современный дизайн.</p>
+        <p>Добро пожаловать в Pepperoni Palace - ваше королевство пиццы! Мы специализируемся на создании великолепных пицц с аутентичным вкусом и свежими ингредиентами. Наше меню включает широкий выбор классических и уникальных вариаций пицц, удовлетворяющих любой вкус. Приходите и наслаждайтесь атмосферой и вкусом в Pepperoni Palace - месте, где рождаются великолепные пиццы!</p>
         <ul class="footer-buttons">
             <li><div class="socialbutton vk"><img style="z-index:1; position:relative;" src="images/vk.png" width="35" height="35"></div></li>
             <li><div class="socialbutton yt"><img style="z-index:1; position:relative;" src="images/yt.png" width="35" height="25"></div></li>
@@ -36,10 +41,27 @@
     <div class="footer-element footer-menu">
         <h2>Ссылки-меню</h2>
         <ul>
-            <li><a href="index.html">Главная страница</a></li>
-            <li><a href="aboutus.html">О нас</a></li>
-            <li><a href="catalogue.html">Каталог</a>
-            <li><a href="cart.html">Корзина</a></li>
+            <li><a href="home">Главная страница</a></li>
+            <li><a href="aboutus">О нас</a></li>
+            <li><a href="menu">Меню</a>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="login">Войти</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="reg">Зарегестрироваться</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a href="logout" th:text="'Выйти (Пользователь: ' + ${#authentication.name} + ')'"></a>
+            </li>
+            <li sec:authorize="hasAuthority('ADMINROLE')">
+                <a href="admin">Админ-страница</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="login">Корзина</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a href="cart">Корзина</a>
+            </li>
         </ul>
     </div>
     <div class="footer-element footer-contacts">
@@ -75,6 +97,24 @@
         <p th:text="${pz.text}"/>
     </div>
     <div class="pizzaButton">
-        <a>🛒</a>
+        <form id="orderForm" class="order_form" action="menu" method="get">
+            <input type="text" name="pizzaN" class="order_bar" style="display:none;" th:value="${pz.name}" title="Order">
+            <button id="order_button" type="submit">🛒</button>
+        </form>
+    </div>
+</div>
+
+<div th:fragment="order" class="menuitem">
+    <div class="pizzaImg">
+        <img th:src="@{'data:image/png;base64,'+${pz.generateBase64Image()}}" alt="">
+    </div>
+    <div class="pizzaName">
+        <p th:text="${pz.pizza.getName()}"/>
+    </div>
+    <div class="pizzaPrice">
+        <p th:text="${pz.pizza.getPrice()}"/>
+    </div>
+    <div class="pizzaInfo">
+        <p th:text="${pz.quantity} + 'x'"/>
     </div>
 </div>

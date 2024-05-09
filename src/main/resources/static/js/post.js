@@ -30,6 +30,5 @@ document.getElementById("addForm").addEventListener("submit", function(event) {
 
     };
     reader.readAsDataURL(file);
-    event.target.reset();
 });
 

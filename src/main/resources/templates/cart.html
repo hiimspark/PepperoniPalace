@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet"  href="/css/header-footer.css">
-    <link rel="stylesheet"  href="/css/home.css">
+    <link rel="stylesheet"  href="/css/menu.css">
     <link rel="stylesheet"  href="/css/font.css">
     <title>Pepperoni Palace</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -10,15 +10,15 @@
 <body>
 <header th:insert="~{parts :: header}" class="header"></header>
 <main>
+    <div class="menuText">
+        <h2>Корзина</h2>
+    </div>
+    </div>
     <div class="mainpage">
-        <div class="banner">
-            <h1> Пиццерия <br> Pepperoni Palace!</h1>
+        <div th:each="pz: ${items}">
+            <div th:insert="~{parts :: order}"></div>
         </div>
-        <a href="menu">
-            <div class="banner">
-                <h1> Перейти к меню!</h1>
-            </div>
-        </a>
+        <script src="/js/order.js"></script>
     </div>
     <footer th:insert="~{parts :: footer}"></footer>
     <div class="footer-copyright"><p>© Спиридонов Матвей Сергеевич [ИКБО-30-22]</p></div>

@@ -2,18 +2,23 @@ package org.example.pizzeria.controller;
 
 import lombok.AllArgsConstructor;
 import org.example.pizzeria.dto.PizzaDTO;
+import org.example.pizzeria.entity.UserEntity;
 import org.example.pizzeria.entity.PizzaEntity;
+import org.example.pizzeria.entity.CartItemEntity;
 import org.example.pizzeria.service.PizzaService;
+import org.example.pizzeria.service.CartItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 public class PizzaController {
     private final PizzaService pizzaService;
+    private final CartItemService cartItemService;
 
     @RequestMapping(value = "/postman", method = RequestMethod.GET)
     public ResponseEntity<List<PizzaEntity>> readAll() {
@@ -35,5 +40,6 @@ public class PizzaController {
         pizzaService.delete(id);
         return HttpStatus.OK;
     }
+
 }
 

@@ -3,6 +3,7 @@ package org.example.pizzeria.controller;
 import lombok.AllArgsConstructor;
 import org.example.pizzeria.entity.PizzaEntity;
 import org.example.pizzeria.service.PizzaService;
+import org.example.pizzeria.service.CartItemService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -13,22 +14,33 @@ import org.springframework.ui.Model;
 import org.hibernate.query.Query;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+
 
 @Controller
 @AllArgsConstructor
 public class MenuController {
 
     private final PizzaService pizzaService;
+    private final CartItemService cartItemService;
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @GetMapping("/menu")
-    public String menu(@RequestParam(value="filter", required = false) String filter, Model model){
-        Iterable<PizzaEntity> pizzas = pizzaService.readAll();
+    public String menu(@RequestParam(value="filter", required = false) String filter, @RequestParam(value="pizzaN", required = false) String pizzaN,
+    Principal principal, Model model){
+        List<PizzaEntity> pizzas = pizzaService.readAll();
+        if (pizzaN != null){
+            if (principal != null){
+                PizzaEntity pizza = findPizzaByName(pizzaN, pizzas);
+                cartItemService.create(pizza, principal, 1);
+            }
+        }
         if (filter != null) {
             CriteriaBuilder builder = entityManager.getCriteriaBuilder();
             CriteriaQuery<PizzaEntity> pizzaCriteriaQuery = builder.createQuery(PizzaEntity.class);
@@ -60,5 +72,13 @@ public class MenuController {
             model.addAttribute("pizzas", pizzas);
         }
         return "menu";
+    }
+
+    public PizzaEntity findPizzaByName(String name, List<PizzaEntity> list) {
+        for (int i = 0; i < list.size(); ++i) {
+            if (list.get(i).getName().equals(name))
+                return list.get(i);
+        }
+        return null;
     }
 }
