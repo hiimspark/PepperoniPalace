@@ -7,6 +7,7 @@ import org.example.pizzeria.entity.CartItemEntity;
 import org.example.pizzeria.service.CartItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;

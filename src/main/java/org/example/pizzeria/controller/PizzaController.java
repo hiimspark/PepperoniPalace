@@ -20,22 +20,22 @@ public class PizzaController {
     private final PizzaService pizzaService;
     private final CartItemService cartItemService;
 
-    @RequestMapping(value = "/postman", method = RequestMethod.GET)
+    @RequestMapping(value = "/pizza", method = RequestMethod.GET)
     public ResponseEntity<List<PizzaEntity>> readAll() {
         return new ResponseEntity<>(pizzaService.readAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/postman", method = RequestMethod.POST)
+    @RequestMapping(value = "/pizza", method = RequestMethod.POST)
     public ResponseEntity<PizzaEntity> create(@RequestBody PizzaDTO dto) {
         return new ResponseEntity<>(pizzaService.create(dto), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/postman", method = RequestMethod.PUT)
+    @RequestMapping(value = "/pizza", method = RequestMethod.PUT)
     public ResponseEntity<PizzaEntity> update(@RequestBody PizzaEntity pizza) {
         return new ResponseEntity<>(pizzaService.update(pizza), HttpStatus.OK);
     }
 
-    @DeleteMapping("/postman/{id}")
+    @DeleteMapping("/pizza/{id}")
     public HttpStatus delete(@PathVariable Long id) {
         pizzaService.delete(id);
         return HttpStatus.OK;
